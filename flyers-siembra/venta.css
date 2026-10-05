@@ -1,0 +1,45 @@
+/* Venta de rollos: título que pasa por detrás del rollo + sello circular.
+   Se carga después de v2.css. Las variables --f*, --t*, --s*, --bb ajustan post vs historia. */
+.v { background: #e9ece6; }
+.v .foto { position: absolute; left: var(--fx, 0px); top: var(--fy, 0px); width: var(--fw, 1080px); height: var(--fh, 1440px); }
+.v .recorte {
+  z-index: 3;
+  clip-path: polygon(15.63% 53.91%, 16.35% 43.36%, 19.27% 41.25%, 23.44% 39.06%, 30.21% 38.05%, 37.5% 37.66%,
+    45.83% 37.42%, 52.6% 37.34%, 58.33% 37.81%, 61.98% 39.45%, 63.75% 42.58%, 65.21% 50%, 64.79% 59.38%,
+    61.98% 64.84%, 56.77% 68.36%, 50% 69.38%, 31.25% 66.02%, 19.79% 62.5%, 15.83% 58.59%);
+}
+.v .capa { z-index: 4; background:
+  linear-gradient(180deg, rgba(10,25,10,.62) 0%, rgba(10,25,10,.35) 28%, rgba(10,25,10,0) 46%),
+  linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 20%, rgba(0,0,0,0) 38%); }
+
+.v .logo-chip { z-index: 6; }
+.v .disp {
+  position: absolute; top: var(--dy, 64px); right: 48px; z-index: 6;
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #fff; color: var(--verde-osc); border-radius: 999px; padding: 10px 22px 10px 16px;
+  font-weight: 700; font-size: 20px; letter-spacing: 2px; text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+}
+.v .disp i { width: 14px; height: 14px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 0 5px rgba(91,168,10,.25); }
+
+.v .titulo { position: absolute; left: 60px; right: 60px; top: var(--ty, 230px); z-index: 5; text-align: left; color: #fff; }
+.v .titulo .pre { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 56px; line-height: 1; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,.35); }
+.v .titulo .pre span { color: var(--verde-osc); }
+.v .titulo .gigante {
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: var(--gs, 240px); line-height: .9;
+  letter-spacing: -8px; text-transform: uppercase; color: #fff; margin: 6px 0 0 -10px;
+  text-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+
+.v .sello { position: absolute; z-index: 5; width: 230px; height: 230px; left: var(--sx, 800px); top: var(--sy, 640px);
+  transform: rotate(-12deg); filter: drop-shadow(0 8px 18px rgba(0,0,0,.25)); }
+
+.v .base { position: absolute; left: 60px; right: 60px; bottom: var(--bb, 52px); z-index: 6; color: #fff; }
+.v .chips { display: flex; gap: 12px; margin-bottom: 30px; }
+.v .chips span {
+  border: 2px solid rgba(255,255,255,.6); border-radius: 999px; padding: 8px 18px;
+  font-size: 20px; font-weight: 600; background: rgba(255,255,255,.1);
+}
+.v .fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.v .lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; }
+.v .lema span { color: var(--trigo); }

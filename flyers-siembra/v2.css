@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+:root { --verde: #5BA80A; --verde-osc: #3F7C05; --trigo: #F5B014; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1350px; background: #111; overflow: hidden; }
+
+.flyer { position: relative; width: 1080px; height: 1350px; overflow: hidden; font-family: 'Nunito Sans', sans-serif; color: #fff; }
+.flyer > .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.capa { position: absolute; inset: 0; }
+
+.logo-chip { z-index: 2;
+  position: absolute; top: 48px; left: 48px;
+  
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,.45));
+}
+.logo-chip img { display: block; width: 170px; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--trigo); color: #2a2a2a;
+  font-weight: 700; font-size: 20px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 10px 20px; border-radius: 999px;
+}
+
+.cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--verde); color: #fff;
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 26px;
+  padding: 20px 34px; border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.3);
+}
+.cta svg { width: 26px; height: 26px; }
+
+.pie { display: flex; justify-content: space-between; align-items: center; font-size: 19px; font-weight: 600; color: rgba(255,255,255,.85); }
+.pie b { color: #fff; font-weight: 700; }
+.pie .loc { display: flex; align-items: center; gap: 8px; }
+.pie .loc svg { width: 20px; height: 20px; fill: var(--trigo); }
+
+/* ---------- Flyer A: palabra gigante en el cielo ---------- */
+.a .bg { object-position: 50% 52%; }
+.a .capa {
+  background:
+    linear-gradient(180deg, rgba(10,30,60,.35) 0%, rgba(10,30,60,0) 30%),
+    linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,0) 42%);
+}
+.a .titulo { position: absolute; top: 205px; left: 0; right: 0; text-align: center; }
+.a .titulo .pre {
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 52px;
+  text-shadow: 0 4px 20px rgba(0,0,0,.35); margin: 26px 0 0;
+}
+.a .titulo .gigante {
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 236px; line-height: .9;
+  letter-spacing: -6px; text-transform: uppercase;
+  text-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+.a .base { position: absolute; left: 60px; right: 60px; bottom: 52px; }
+.a .lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 38px; line-height: 1.15; }
+.a .lema span { color: var(--trigo); }
+.a .fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.a .fila p { font-size: 22px; line-height: 1.45; color: rgba(255,255,255,.85); max-width: 430px; }
+
+/* ---------- Flyer B: titular vertical + tarjeta ---------- */
+.b .bg { object-position: 50% 39%; }
+.b .capa {
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 38%, rgba(0,0,0,0) 55%),
+    linear-gradient(0deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,.4) 24%, rgba(0,0,0,0) 45%);
+}
+.b .vertical { z-index: 0;
+  position: absolute; left: 22px; bottom: 470px;
+  transform-origin: left bottom; transform: rotate(-90deg) translateY(100%);
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 138px; line-height: .82;
+  text-transform: uppercase; letter-spacing: -4px; white-space: nowrap;
+}
+.b .vertical span { color: transparent; -webkit-text-stroke: 3px #fff; }
+.b .tag { position: absolute; top: 64px; right: 48px; }
+.b .base { position: absolute; left: 60px; right: 60px; bottom: 52px; }
+.b h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 76px; line-height: 1; margin-bottom: 18px; }
+.b h1 span { color: var(--trigo); }
+.b .chips { display: flex; gap: 12px; margin-bottom: 34px; }
+.b .chips span {
+  border: 2px solid rgba(255,255,255,.6); border-radius: 999px; padding: 8px 18px;
+  font-size: 20px; font-weight: 600; background: rgba(255,255,255,.08);
+}
+.b .fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.b .fila .lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 28px; line-height: 1.2; }
+.b .fila .lema span { color: var(--trigo); }
+
+.linea { height: 2px; background: rgba(255,255,255,.25); margin-bottom: 22px; }
+
+.pie .tel { color: #fff; font-weight: 800; font-size: 24px; font-family: 'Nunito', sans-serif; }
+.pie .tel svg { width: 22px; height: 22px; }
+
+/* ---------- Flyer C: foto horizontal sobre fondo desenfocado ---------- */
+.c { background: #0d1a08; }
+.c .blur { position: absolute; inset: -60px; width: calc(100% + 120px); height: calc(100% + 120px); object-fit: cover; filter: blur(38px) saturate(1.2) brightness(.55); }
+.c .capa { background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%); }
+.c .tag { position: absolute; top: 64px; right: 48px; }
+.c .titulo { position: absolute; top: 225px; left: 60px; right: 60px; }
+.c .titulo .pre { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 50px; line-height: 1; }
+.c .titulo .gigante {
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 228px; line-height: .86;
+  letter-spacing: -8px; text-transform: uppercase; margin-left: -10px;
+  text-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+.c .titulo .gigante span { color: var(--trigo); }
+.c .foto-h {
+  position: absolute; left: 0; top: 520px; width: 1080px; height: 498px; object-fit: cover;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 90px), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 90px), transparent 100%);
+}
+.c .base { position: absolute; left: 60px; right: 60px; bottom: 52px; }
+.c .chips { display: flex; gap: 12px; margin-bottom: 30px; }
+.c .chips span {
+  border: 2px solid rgba(255,255,255,.6); border-radius: 999px; padding: 8px 18px;
+  font-size: 20px; font-weight: 600; background: rgba(255,255,255,.08);
+}
+.c .fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.c .lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; }
+.c .lema span { color: var(--trigo); }
+
+/* ---------- Flyer D: alfalfa, título abajo sobre el cultivo ---------- */
+.d .bg { object-position: 8% 50%; }
+.d .capa {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 22%),
+    linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.6) 30%, rgba(0,0,0,0) 52%);
+}
+.d .logo-chip { left: auto; right: 48px; }
+.d .tag { position: absolute; top: 236px; right: 48px; }
+.d .titulo { position: absolute; left: 60px; right: 60px; bottom: 320px; }
+.d .titulo .pre { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 50px; line-height: 1; }
+.d .titulo .gigante {
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 172px; line-height: .86;
+  letter-spacing: -8px; text-transform: uppercase; margin-left: -10px;
+  text-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+.d .titulo .gigante span { color: var(--trigo); }
+.d .base { position: absolute; left: 60px; right: 60px; bottom: 52px; }
+.d .fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.d .lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; }
+.d .lema span { color: var(--trigo); }
+
+.pie .tel .sep { color: var(--trigo); margin: 0 4px; }

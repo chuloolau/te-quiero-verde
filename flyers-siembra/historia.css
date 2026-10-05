@@ -1,0 +1,21 @@
+﻿/* Formato historia de Instagram 1080x1920 — se carga después de v2.css.
+   Zonas seguras: ~220px arriba (perfil) y ~250px abajo (barra de respuesta). */
+html, body, .flyer { height: 1920px; }
+
+.logo-chip { top: 220px; }
+.logo-chip img { width: 190px; }
+.base { bottom: 250px !important; }
+
+/* A: arranque de siembra */
+.a .titulo { top: 440px; }
+.a .titulo .gigante { font-size: 226px; }
+
+/* B: servicio de siembra */
+.b .tag { top: 240px; }
+.b .vertical { font-size: 176px; bottom: 680px; }
+.b h1 { font-size: 80px; }
+
+/* C: rollos */
+.c .tag { top: 240px; }
+.c .titulo { top: 470px; }
+.c .foto-h { top: 820px; height: 560px; }

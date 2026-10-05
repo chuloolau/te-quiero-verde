@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Contacto</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --verde: #5BA80A; --verde-osc: #3F7C05; --trigo: #F5B014; --carbon: #333; --suave: #F3F9EC; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; background: #fff; overflow: hidden; }
+  .h { position: relative; width: 1080px; height: 1920px; font-family: 'Nunito Sans', sans-serif; color: var(--carbon); }
+
+  /* detalles de fondo */
+  .deco1 { position: absolute; width: 760px; height: 760px; border-radius: 50%; background: var(--suave); top: -420px; right: -420px; }
+  .deco2 { position: absolute; width: 760px; height: 760px; border-radius: 50%; border: 18px solid var(--verde); top: -420px; right: -420px; }
+  .deco3 { position: absolute; width: 56px; height: 56px; border-radius: 50%; background: var(--trigo); top: 201px; right: 201px; border: 12px solid #fff; }
+  .franja { position: absolute; left: 0; right: 0; bottom: 0; height: 320px; background: var(--verde); }
+  .servicios { position: absolute; left: 0; right: 0; top: 48px; text-align: center; color: #fff; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.55; letter-spacing: .5px; }
+  .servicios span { color: var(--trigo); margin: 0 10px; }
+  .franja::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 14px; background: var(--trigo); }
+
+  .logo { position: absolute; top: 210px; left: 0; right: 0; text-align: center; }
+  .logo img { width: 400px; }
+  .empresa { margin-top: 18px; font-size: 26px; font-weight: 600; color: #6a6a6a; letter-spacing: .5px; }
+  .empresa b { color: var(--carbon); font-weight: 700; }
+
+  .titulo { position: absolute; top: 700px; left: 80px; right: 80px; }
+  .titulo h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 128px; line-height: .95; letter-spacing: -3px; }
+  .titulo h1 span { color: var(--trigo); }
+  .titulo p { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 40px; color: var(--verde-osc); margin-top: 18px; }
+
+  .datos { position: absolute; top: 940px; left: 80px; right: 80px; display: flex; flex-direction: column; gap: 26px; }
+  .dato { display: flex; align-items: center; gap: 30px; background: var(--suave); border-radius: 32px; padding: 28px 34px; border: 2px solid #E2F0D3; }
+  .ico { flex: none; width: 104px; height: 104px; border-radius: 50%; background: var(--verde); display: grid; place-items: center; }
+  .ico svg { width: 50px; height: 50px; fill: #fff; }
+  .lbl { font-size: 24px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-osc); }
+  .val { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 54px; line-height: 1.1; margin-top: 4px; }
+  .val.mail { font-size: 44px; }
+  .val.lugar { font-size: 46px; }
+
+  .lema { position: absolute; top: 1520px; left: 80px; right: 80px; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.25; color: #555; }
+  .lema span { color: var(--verde-osc); }
+</style>
+</head>
+<body>
+<div class="h">
+  <div class="deco1"></div><div class="deco2"></div><div class="deco3"></div>
+  <div class="franja"><div class="servicios">Siembra<span>•</span>Segadora<span>•</span>Cosecha<br>Confección de rollos<span>•</span>Venta de rollos</div></div>
+
+  <div class="logo">
+    <img src="logo-te-quiero-verde-sin-fondo.png" alt="Te Quiero Verde">
+    <div class="empresa"><b>Galaro S.A.</b> | Servicios agrícolas</div>
+  </div>
+
+  <div class="titulo">
+    <h1>Contactanos<span>.</span></h1>
+    <p>Pedí tu presupuesto.</p>
+  </div>
+
+  <div class="datos">
+    <div class="dato">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+      <div><div class="lbl">Teléfono</div><div class="val">3537 59-6572</div></div>
+    </div>
+    <div class="dato">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div><div class="lbl">Email</div><div class="val mail">galarosabv@gmail.com</div></div>
+    </div>
+    <div class="dato">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+      <div><div class="lbl">Ubicación</div><div class="val lugar">Bell Ville, Córdoba</div></div>
+    </div>
+  </div>
+
+  <div class="lema">Maquinaria moderna y <span>equipo comprometido.</span></div>
+</div>
+</body>
+</html>

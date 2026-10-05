@@ -1,0 +1,78 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --verde: #5BA80A;
+  --verde-osc: #3F7C05;
+  --trigo: #F5B014;
+  --carbon: #333333;
+  --texto: #4a4a4a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 1080px; height: 1350px; background: #fff; overflow: hidden; }
+
+.flyer {
+  width: 1080px; height: 1350px;
+  display: grid; grid-template-columns: 450px 630px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.panel {
+  background: #fff;
+  padding: 64px 40px 60px 60px;
+  display: flex; flex-direction: column;
+}
+
+.logo { width: 280px; margin-left: -10px; }
+
+.contenido { margin-top: auto; margin-bottom: auto; }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-weight: 700; font-size: 20px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--verde-osc);
+  margin-bottom: 22px; white-space: nowrap;
+}
+.eyebrow::before { content: ''; width: 40px; height: 4px; background: var(--trigo); border-radius: 2px; }
+
+h1 {
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 60px; line-height: 1.04; color: var(--carbon);
+  letter-spacing: -0.5px; margin-bottom: 30px;
+}
+h1 span { color: var(--verde); }
+
+p { font-size: 23px; line-height: 1.55; color: var(--texto); margin-bottom: 44px; }
+
+.cta {
+  display: inline-block;
+  border: 3px solid var(--verde); color: var(--verde-osc);
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 22px;
+  padding: 16px 34px;
+}
+
+.pie {
+  border-top: 2px solid #ececec; padding-top: 22px;
+  font-size: 17px; font-weight: 600; color: #8a8a8a; letter-spacing: 0.5px;
+}
+.pie b { color: var(--verde-osc); }
+
+.foto { position: relative; overflow: hidden; }
+.foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.foto::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 8px;
+  background: linear-gradient(var(--verde) 0 70%, var(--trigo) 70% 100%); z-index: 1;
+}
+
+.lema {
+  font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 25px; line-height: 1.3; color: var(--verde-osc);
+  border-left: 5px solid var(--trigo); padding-left: 18px;
+  margin: -14px 0 40px;
+}
+.pie { line-height: 1.6; }
+.pie .empresa { font-size: 19px; color: var(--carbon); font-weight: 600; }
+.pie .empresa b { font-weight: 800; color: var(--carbon); }
+.pie .loc { display: flex; align-items: center; gap: 8px; color: #7a7a7a; }
+.pie .loc svg { width: 18px; height: 18px; fill: var(--verde); }
