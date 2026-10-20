@@ -22,3 +22,12 @@ msedge --headless=new --hide-scrollbars --window-size=1080,1350 --screenshot=sal
 ```
 
 (1080,1920 para historias.)
+## Presentación de marca (`presentacion/`)
+
+- `espectaverde-te-quiero-verde.mp4`: video estilo página de iPhone (62 s, vertical, con sonido).
+- `presentacion-te-quiero-verde.mp4`: versión 3D (83 s, vertical, con sonido).
+- `espectaverde.html` / `propuesta-te-quiero-verde.html`: las presentaciones interactivas (se abren con doble clic).
+- `apple-template.html` / `propuesta-v2-template.html`: fuentes editables; `assets/` tiene las imágenes que usan.
+- `identidad-visual-te-quiero-verde.mp4` y `escena-*.png`: primer video de presentación.
+
+Versión interactiva publicada: https://claude.ai/artifact/RFmh1A45BbgpBa3LUzGxhi

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Identidad visual Te Quiero Verde</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Escenas del video de presentación (1080x1920). Se muestra una por vez según el #hash: escenas.html#e3 */
+  :root { --verde: #5BA80A; --verde-osc: #3F7C05; --trigo: #F5B014; --carbon: #333; --fondo: #0d1f0a; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fondo); }
+  section { display: none; position: relative; width: 1080px; height: 1920px; overflow: hidden; color: #fff;
+    font-family: 'Nunito Sans', sans-serif;
+    background: radial-gradient(110% 60% at 50% 0%, #24461a 0%, #132810 55%, #0b1a08 100%); }
+  section.on { display: block; }
+  .cab { position: absolute; top: 230px; left: 80px; right: 80px; display: flex; justify-content: space-between; align-items: center;
+    font-weight: 700; font-size: 22px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.6); }
+  .cab b { color: var(--trigo); }
+  .t { position: absolute; left: 80px; right: 80px; top: 330px; }
+  .eti { font-weight: 700; font-size: 24px; letter-spacing: 4px; text-transform: uppercase; color: var(--trigo); }
+  h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 120px; line-height: .95; letter-spacing: -3px; margin-top: 18px; }
+  h1 span { color: var(--trigo); }
+  .baj { font-size: 34px; line-height: 1.4; color: rgba(255,255,255,.8); margin-top: 26px; max-width: 880px; }
+  .zona { position: absolute; left: 80px; right: 80px; top: 800px; bottom: 260px; }
+  .marca { position: absolute; left: 0; right: 0; bottom: 120px; text-align: center; font-weight: 700; font-size: 22px; letter-spacing: 3px; color: rgba(255,255,255,.4); text-transform: uppercase; }
+  .sombra { box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+  .r { border-radius: 26px; }
+
+  .t3 h1 { font-size: 104px; } .t3 .zona { top: 900px !important; }
+  /* 1 intro */
+  #e1 .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 80px; }
+  #e1 img { width: 560px; }
+  #e1 h1 { font-size: 96px; margin-top: 50px; }
+  #e1 .baj { margin: 24px auto 0; }
+  #e1 .linea { width: 120px; height: 8px; border-radius: 4px; margin: 46px auto 0; background: linear-gradient(90deg, var(--verde) 0 60%, var(--trigo) 60%); }
+
+  /* 2 antes / después */
+  #e2 .par { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  #e2 .caja { height: 520px; border-radius: 26px; display: grid; place-items: center; overflow: hidden; position: relative; }
+  #e2 .antes { background: #fff; }
+  #e2 .antes img { width: 92%; }
+  #e2 .desp { background: linear-gradient(160deg, #2c5a1c, #10240b); }
+  #e2 .desp img { width: 80%; }
+  #e2 .rot { margin-top: 22px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 36px; }
+  #e2 .rot small { display: block; font-family: 'Nunito Sans', sans-serif; font-weight: 600; font-size: 24px; color: rgba(255,255,255,.65); margin-top: 6px; line-height: 1.35; }
+  #e2 .tag { position: absolute; top: 18px; left: 18px; font-weight: 700; font-size: 18px; letter-spacing: 3px; padding: 8px 16px; border-radius: 999px; }
+  #e2 .antes .tag { background: #e5e5e5; color: #666; }
+  #e2 .desp .tag { background: var(--trigo); color: #222; }
+
+  /* 3 colores */
+  #e3 .sw { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  #e3 .c { height: 340px; border-radius: 30px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; }
+  #e3 .c b { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 40px; }
+  #e3 .c span { font-weight: 700; font-size: 26px; letter-spacing: 2px; opacity: .85; margin-top: 4px; }
+
+  /* 4 tipografía */
+  #e4 .tipo { background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.12); border-radius: 30px; padding: 44px 50px; margin-bottom: 30px; }
+  #e4 .aa { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 230px; line-height: .9; }
+  #e4 .aa2 { font-family: 'Nunito Sans', sans-serif; font-weight: 400; font-size: 150px; line-height: 1; }
+  #e4 .nom { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 44px; margin-top: 18px; }
+  #e4 .nom small { font-family: 'Nunito Sans', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 3px; color: var(--trigo); text-transform: uppercase; }
+  #e4 .abc { font-size: 30px; color: rgba(255,255,255,.7); margin-top: 10px; letter-spacing: 2px; }
+
+  /* 5 elementos */
+  #e5 .fila { display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,.06); border-radius: 26px; padding: 30px 36px; margin-bottom: 22px; }
+  #e5 .fila p { font-size: 26px; color: rgba(255,255,255,.7); flex: 1; }
+  #e5 .fila p b { display: block; color: #fff; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 32px; }
+  #e5 .dot { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 74px; letter-spacing: -2px; line-height: .8; width: 260px; }
+  #e5 .dot span { color: var(--trigo); }
+  #e5 .cta { width: 260px; display: inline-flex; justify-content: center; background: var(--verde); border-radius: 999px; padding: 18px 0; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 24px; }
+  #e5 .chip { width: 260px; display: inline-flex; justify-content: center; align-items: center; gap: 10px; background: #fff; color: var(--verde-osc); border-radius: 999px; padding: 12px 0; font-weight: 700; font-size: 19px; letter-spacing: 2px; }
+  #e5 .chip i { width: 12px; height: 12px; border-radius: 50%; background: var(--verde); }
+  #e5 .ceja { width: 260px; display: inline-flex; justify-content: center; background: var(--trigo); color: #222; border-radius: 999px; padding: 12px 0; font-weight: 700; font-size: 19px; letter-spacing: 2px; }
+  #e5 .ficha { width: 260px; display: flex; border-radius: 16px; overflow: hidden; border: 2px solid rgba(255,255,255,.3); }
+  #e5 .ficha div { flex: 1; padding: 10px 12px; }
+  #e5 .ficha div + div { border-left: 2px solid rgba(255,255,255,.2); }
+  #e5 .ficha small { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--trigo); }
+  #e5 .ficha b { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 18px; }
+
+  /* 6 posts */
+  #e6 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  #e6 .grid img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 18px; }
+
+  /* 7 historias */
+  #e7 .h3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  #e7 .h3 img { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 20px; }
+
+  /* 8 perfil y destacados */
+  #e8 .perfil { display: flex; align-items: center; gap: 40px; }
+  #e8 .perfil img { width: 260px; border-radius: 50%; background: #fff; }
+  #e8 .perfil h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 40px; }
+  #e8 .perfil p { font-size: 26px; line-height: 1.45; color: rgba(255,255,255,.8); margin-top: 10px; }
+  #e8 .perfil p b { color: var(--trigo); font-weight: 700; }
+  #e8 .dest { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 20px; margin-top: 70px; text-align: center; }
+  #e8 .dest div { font-weight: 700; font-size: 22px; }
+  #e8 .dest .c { width: 190px; height: 190px; margin: 0 auto 12px; border-radius: 50%; background-size: 190px auto; background-position: center; background-color: #fff; border: 4px solid rgba(255,255,255,.25); }
+
+  /* 9 video */
+  #e9 .vid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  #e9 .vid div { position: relative; }
+  #e9 .vid img { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 22px; }
+  #e9 .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 120px; height: 120px; border-radius: 50%; background: rgba(0,0,0,.55); border: 4px solid #fff; display: grid; place-items: center; }
+  #e9 .play svg { width: 46px; height: 46px; margin-left: 8px; fill: #fff; }
+
+  /* 10 cierre */
+  #e10 .centro { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; }
+  #e10 h1 { font-size: 132px; }
+  #e10 ul { list-style: none; margin-top: 60px; }
+  #e10 li { display: flex; align-items: center; gap: 22px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 42px; padding: 16px 0; border-bottom: 2px solid rgba(255,255,255,.1); }
+  #e10 li i { width: 44px; height: 44px; border-radius: 50%; background: var(--verde); display: grid; place-items: center; flex: none; }
+  #e10 li i svg { width: 24px; height: 24px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Intro -->
+<section id="e1">
+  <div class="centro">
+    <img src="../logo-te-quiero-verde-blanco.png" alt="Te Quiero Verde">
+    <h1>Identidad<br><span>visual.</span></h1>
+    <div class="baj">Rediseño de marca y contenido para redes de Te Quiero Verde · Galaro S.A.</div>
+    <div class="linea"></div>
+  </div>
+  <div class="marca">Caso de estudio · 2026</div>
+</section>
+
+<!-- 2 · Antes / después del logo -->
+<section id="e2">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>01</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Logo</div>
+    <h1>Del archivo<br>a la <span>marca.</span></h1>
+    <div class="baj">Recuperamos el logo en alta calidad y sin fondo, con versiones para fondos claros y oscuros.</div>
+  </div>
+  <div class="zona">
+    <div class="par">
+      <div><div class="caja antes sombra"><span class="tag">ANTES</span><img src="../flyers-siembra/logo.jpg" alt="Logo original con fondo blanco"></div>
+        <div class="rot">JPG con fondo<small>Baja resolución, solo sirve sobre blanco.</small></div></div>
+      <div><div class="caja desp sombra"><span class="tag">DESPUÉS</span><img src="../logo-te-quiero-verde-blanco.png" alt="Logo sin fondo"></div>
+        <div class="rot">PNG sin fondo<small>2x resolución, versión color y blanca.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Colores -->
+<section id="e3" class="t3">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>02</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Paleta</div>
+    <h1>Colores que<br>salen del <span>campo.</span></h1>
+    <div class="baj">La hoja y la espiga del logo pasan a ser el sistema de color de toda la comunicación.</div>
+  </div>
+  <div class="zona">
+    <div class="sw">
+      <div class="c sombra" style="background:#5BA80A"><b>Verde hoja</b><span>#5BA80A</span></div>
+      <div class="c sombra" style="background:#F5B014;color:#222"><b>Trigo</b><span>#F5B014</span></div>
+      <div class="c sombra" style="background:#3F7C05"><b>Verde campo</b><span>#3F7C05</span></div>
+      <div class="c sombra" style="background:#333333"><b>Carbón</b><span>#333333</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Tipografía -->
+<section id="e4">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>03</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Tipografía</div>
+    <h1>Redonda,<br>firme y <span>clara.</span></h1>
+  </div>
+  <div class="zona" style="top:700px">
+    <div class="tipo">
+      <div class="aa">Aa</div>
+      <div class="nom">Nunito Black<small>Títulos</small></div>
+      <div class="abc">SIEMBRA · ROLLOS · ALFALFA</div>
+    </div>
+    <div class="tipo">
+      <div class="aa2">Aa</div>
+      <div class="nom">Nunito Sans<small>Textos</small></div>
+      <div class="abc">Maquinaria moderna y equipo comprometido.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Elementos de marca -->
+<section id="e5">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>04</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Sistema</div>
+    <h1>Piezas que<br>se <span>repiten.</span></h1>
+    <div class="baj">Pocos elementos, siempre iguales: así la marca se reconoce de un vistazo.</div>
+  </div>
+  <div class="zona">
+    <div class="fila"><div class="dot">Rollos<span>.</span></div><p><b>El punto amarillo</b>Cierra cada título, como la espiga del logo.</p></div>
+    <div class="fila"><span class="cta">Pedí tu presupuesto →</span><p><b>Llamado a la acción</b>Un solo botón verde, cuando hay que vender.</p></div>
+    <div class="fila"><span class="chip"><i></i>STOCK DISPONIBLE</span><p><b>Etiquetas</b>Estado del trabajo o del producto.</p></div>
+    <div class="fila"><span class="ceja">CAMPAÑA 2026 - 2027</span><p><b>Campaña</b>Ubica cada pieza en la temporada.</p></div>
+    <div class="fila"><div class="ficha"><div><small>CULTIVO</small><b>Trigo</b></div><div><small>ZONA</small><b>B. Ville</b></div></div><p><b>Ficha de lote</b>Datos técnicos para mostrar el trabajo.</p></div>
+  </div>
+</section>
+
+<!-- 6 · Posts -->
+<section id="e6">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>05</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Feed</div>
+    <h1>Posts con la<br>foto <span>adelante.</span></h1>
+  </div>
+  <div class="zona" style="top:640px">
+    <div class="grid">
+      <img class="sombra" src="../flyers-siembra/v2-arrancamos.png" alt="">
+      <img class="sombra" src="../flyers-siembra/v3-rollos-fila.png" alt="">
+      <img class="sombra" src="../flyers-siembra/v3-trigo.png" alt="">
+      <img class="sombra" src="../flyers-siembra/v2-servicio.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- 7 · Historias -->
+<section id="e7">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>06</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Historias</div>
+    <h1>Lo que pasa<br>en el <span>lote.</span></h1>
+    <div class="baj">Trabajos realizados, ubicación, contacto y saludos: cada historia con su objetivo.</div>
+  </div>
+  <div class="zona" style="top:820px">
+    <div class="h3">
+      <img class="sombra" src="../flyers-siembra/historia-alto-alegre.png" alt="">
+      <img class="sombra" src="../flyers-siembra/historia-volteo.png" alt="">
+      <img class="sombra" src="../flyers-siembra/historia-contacto.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Perfil y destacados -->
+<section id="e8">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>07</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Instagram</div>
+    <h1>Un perfil<br>que <span>vende.</span></h1>
+  </div>
+  <div class="zona" style="top:680px">
+    <div class="perfil">
+      <img class="sombra" src="../perfil-instagram/perfil-instagram.png" alt="Foto de perfil">
+      <div><h2>@tequieroverde.bv</h2>
+        <p>Foto de perfil nítida, nombre con <b>palabras clave</b>, bio con servicios y <b>WhatsApp directo</b>.</p></div>
+    </div>
+    <div class="dest">
+      <div><div class="c" style="background-image:url(../destacados/1-siembra.png)"></div>Siembra</div>
+      <div><div class="c" style="background-image:url(../destacados/2-rollos.png)"></div>Rollos</div>
+      <div><div class="c" style="background-image:url(../destacados/3-venta.png)"></div>Venta</div>
+      <div><div class="c" style="background-image:url(../destacados/7-contacto.png)"></div>Contacto</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · Video -->
+<section id="e9" class="t3">
+  <div class="cab"><span>Te Quiero Verde</span><span><b>08</b> / 08</span></div>
+  <div class="t">
+    <div class="eti">Video</div>
+    <h1>Videos del<br>celu, con <span>calidad.</span></h1>
+    <div class="baj">Tomas de WhatsApp pasadas a vertical, con color, nitidez y textos de marca.</div>
+  </div>
+  <div class="zona" style="top:820px">
+    <div class="vid">
+      <div><img class="sombra" src="frame-fertilizacion.png" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span></div>
+      <div><img class="sombra" src="frame-volteo.png" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Cierre -->
+<section id="e10">
+  <div class="centro">
+    <div class="eti">Lo que hicimos</div>
+    <h1>Una marca,<br>un <span>sistema.</span></h1>
+    <ul>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Logo recuperado en alta</li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Paleta y tipografía</li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>+20 posts e historias</li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Perfil y destacados</li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Videos editados</li>
+    </ul>
+  </div>
+  <div class="marca">Identidad visual · Redes sociales · Contenido</div>
+</section>
+
+<script>
+  var id = (location.hash || '#e1').slice(1);
+  document.getElementById(id).classList.add('on');
+</script>
+</body>
+</html>

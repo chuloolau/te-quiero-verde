@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espectaverde</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<style>
+  /* Video estilo página de producto Apple: fondo blanco, títulos rotundos, palabra en degradé,
+     el material real dentro de un iPhone. Escenario fijo de 540x960 escalado a la ventana. */
+  :root {
+    --bg: #fbfbfd; --ink: #1d1d1f; --sub: #6e6e73; --gris: #e8e8ed;
+    --verde: #5BA80A; --osc: #3F7C05; --trigo: #F5B014;
+    --grad: linear-gradient(90deg, #2f6b05 0%, #5BA80A 32%, #9cc43a 62%, #F5B014 100%);
+    --display: 'Nunito', system-ui, sans-serif; --cuerpo: 'Nunito Sans', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #stage { position: absolute; left: 50%; top: 50%; width: 540px; height: 960px; margin: -480px 0 0 -270px; background: var(--bg);
+    overflow: hidden; font-family: var(--cuerpo); color: var(--ink); transform-origin: center; }
+  .sc { position: absolute; inset: 0; opacity: 0; will-change: opacity, transform; }
+  .a { position: absolute; will-change: opacity, transform, filter; }
+  .center { left: 0; right: 0; text-align: center; }
+  .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; }
+  .h-sec { font-family: var(--display); font-weight: 900; font-size: 60px; letter-spacing: -.02em; line-height: 1; margin: 0; }
+  .h-sub { font-family: var(--display); font-weight: 800; font-size: 30px; letter-spacing: -.01em; line-height: 1.1; margin: 0; }
+  .p { font-size: 17px; line-height: 1.45; color: var(--sub); margin: 0; }
+
+  /* barra superior tipo apple.com */
+  #nav { position: absolute; left: 0; right: 0; top: 0; height: 52px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px; background: rgba(251,251,253,.86); border-bottom: 1px solid rgba(0,0,0,.06); z-index: 5; }
+  #nav img { height: 30px; }
+  #nav span { font: 700 13px var(--cuerpo); color: var(--sub); }
+
+  /* 1 · hero */
+  #s1 .prod { top: 250px; font: 800 24px var(--display); }
+  #s1 .big { top: 284px; font: 900 76px var(--display); letter-spacing: -.035em; line-height: 1.05; }
+  #s1 .lead { top: 384px; }
+  #s1 .logo { top: 450px; left: 105px; width: 330px; }
+  .btn { display: inline-block; font: 800 17px var(--display); color: #fff; background: var(--verde); padding: 12px 26px; border-radius: 999px; }
+  #s1 .cta { top: 840px; }
+
+  /* 2 · destacados */
+  #s2 .tit { top: 110px; left: 32px; }
+  #track { position: absolute; top: 190px; left: 0; height: 540px; display: flex; gap: 16px; }
+  .tile { position: relative; flex: none; width: 380px; height: 540px; border-radius: 30px; overflow: hidden; background: #000; }
+  .tile img.bgimg { position: absolute; left: 0; right: 0; bottom: 0; top: 128px; width: 100%; height: calc(100% - 128px); object-fit: cover; object-position: center top; }
+  .tile .txt { position: absolute; left: 26px; right: 26px; top: 26px; font: 800 24px/1.18 var(--display); color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
+  .tile .txt small { display: block; font: 600 15px/1.4 var(--cuerpo); opacity: .85; margin-top: 8px; }
+  .tile.claro .txt { color: var(--ink); text-shadow: none; }
+  .tile::after { display: none; }
+  .tile.claro::after, .tile.liso::after { display: none; }
+  .ctrl { position: absolute; top: 760px; left: 32px; right: 32px; display: flex; justify-content: space-between; align-items: center; }
+  .dots { display: flex; gap: 8px; background: var(--gris); padding: 12px 16px; border-radius: 999px; }
+  .dots i { width: 8px; height: 8px; border-radius: 4px; background: #86868b; display: block; }
+  .flechas { display: flex; gap: 12px; }
+  .flechas b { width: 44px; height: 44px; border-radius: 50%; background: var(--gris); display: grid; place-items: center; }
+  .flechas svg { width: 18px; height: 18px; }
+
+  /* 3 · antes / después */
+  .tit-sec { top: 100px; left: 0; right: 0; text-align: center; }
+  .tit-sec .h-sub { margin-top: 10px; }
+  #cmp { position: absolute; top: 290px; left: 50px; width: 440px; height: 440px; border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.12); }
+  #cmp .lado { position: absolute; inset: 0; display: grid; place-items: center; }
+  #cmp .antes { background: #e9e9e6; }
+  #cmp .antes img { width: 78%; }
+  #cmp .desp { background: radial-gradient(120% 90% at 50% 20%, #3a7420 0%, #10240b 75%); }
+  #cmp .desp img { width: 70%; }
+  #cmp .tag { position: absolute; top: 18px; font: 800 13px var(--display); letter-spacing: .12em; padding: 7px 12px; border-radius: 999px; z-index: 2; }
+  #cmp .t1 { left: 18px; background: rgba(255,255,255,.9); color: #555; }
+  #cmp .t2 { right: 18px; background: var(--trigo); color: #222; }
+  #linea { position: absolute; top: 0; bottom: 0; width: 3px; margin-left: -1.5px; background: #fff; z-index: 3; box-shadow: 0 0 12px rgba(0,0,0,.25); }
+  #manija { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25); display: grid; place-items: center; }
+  #manija svg { width: 24px; height: 24px; }
+  #s3 .pie { top: 770px; }
+
+  /* 4 · colores */
+  #muestra { position: absolute; top: 280px; left: 70px; width: 400px; height: 400px; border-radius: 34px; display: grid; place-items: center; box-shadow: 0 30px 60px rgba(0,0,0,.12); }
+  #muestra img { width: 72%; }
+  #puntos { position: absolute; top: 730px; left: 0; right: 0; display: flex; justify-content: center; gap: 24px; }
+  #puntos i { width: 36px; height: 36px; border-radius: 50%; display: block; position: relative; }
+  #puntos i::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--ink); opacity: var(--sel, 0); }
+  #nombreColor { top: 800px; }
+  #nombreColor b { display: block; font: 800 22px var(--display); }
+  #nombreColor span { font: 700 15px var(--cuerpo); color: var(--sub); letter-spacing: .04em; }
+
+  /* 5 · tipografía */
+  #s5 .aa1 { top: 230px; left: 44px; font: 900 220px/1 var(--display); letter-spacing: -.04em; }
+  #s5 .l1 { top: 460px; left: 50px; }
+  #s5 .aa2 { top: 540px; left: 44px; font: 400 150px/1 var(--cuerpo); }
+  #s5 .l2 { top: 712px; left: 50px; }
+  .lab b { display: block; font: 900 26px var(--display); }
+  .lab span { font: 700 13px var(--cuerpo); letter-spacing: .14em; text-transform: uppercase; color: var(--verde); }
+  #s5 .frase { top: 790px; left: 50px; right: 50px; font: 600 19px/1.4 var(--cuerpo); color: var(--sub); }
+
+  /* teléfono */
+  .phone { position: absolute; left: 115px; top: 250px; width: 310px; height: 640px; border-radius: 52px; background: #111;
+    padding: 11px; box-shadow: 0 40px 80px rgba(0,0,0,.25), inset 0 0 0 2px #3a3a3c; }
+  .phone .pant { position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; background: #fff; }
+  .phone .isla { position: absolute; top: 10px; left: 50%; width: 92px; height: 27px; margin-left: -46px; border-radius: 20px; background: #000; z-index: 6; }
+  .phone .estado { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 28px 0; font: 800 13px var(--cuerpo); z-index: 5; }
+
+  /* perfil de instagram */
+  #ig { position: absolute; left: 0; right: 0; top: 0; padding-top: 62px; }
+  .ig-top { display: flex; align-items: center; justify-content: space-between; padding: 6px 14px 10px; font: 800 15px var(--cuerpo); }
+  .ig-head { display: flex; align-items: center; gap: 16px; padding: 4px 14px; }
+  .ig-head img { width: 70px; height: 70px; border-radius: 50%; padding: 3px; background: var(--grad); }
+  .ig-stats { display: flex; gap: 22px; font: 600 11px var(--cuerpo); text-align: center; }
+  .ig-stats b { display: block; font: 800 15px var(--cuerpo); }
+  .ig-bio { padding: 10px 14px 0; font: 600 11.5px/1.42 var(--cuerpo); }
+  .ig-bio b { font-weight: 800; font-size: 12.5px; }
+  .ig-bio .link { color: #00376b; font-weight: 700; }
+  .ig-btns { display: flex; gap: 6px; padding: 10px 14px; }
+  .ig-btns span { flex: 1; text-align: center; font: 800 12px var(--cuerpo); padding: 7px 0; border-radius: 8px; background: #efefef; }
+  .ig-btns span.on { background: #0095f6; color: #fff; }
+  .ig-dest { display: flex; gap: 12px; padding: 6px 14px 12px; }
+  .ig-dest div { text-align: center; font: 600 10px var(--cuerpo); }
+  .ig-dest img { width: 54px; height: 54px; border-radius: 50%; border: 1px solid #dbdbdb; padding: 2px; display: block; margin-bottom: 4px; }
+  .ig-tabs { display: flex; border-top: 1px solid #efefef; }
+  .ig-tabs span { flex: 1; height: 34px; border-bottom: 1px solid transparent; }
+  .ig-tabs span:first-child { border-bottom: 1.5px solid #000; }
+  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+  .ig-grid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+
+  /* historias */
+  #st { position: absolute; inset: 0; background: #000; }
+  #st img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
+  .st-barras { position: absolute; top: 48px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 4; }
+  .st-barras i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.4); overflow: hidden; }
+  .st-barras i b { display: block; height: 100%; width: 0; background: #fff; }
+  .st-user { position: absolute; top: 60px; left: 12px; display: flex; align-items: center; gap: 8px; z-index: 4; color: #fff; font: 800 12px var(--cuerpo); text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+  .st-user img { position: static !important; opacity: 1 !important; width: 28px !important; height: 28px !important; border-radius: 50%; }
+  .st-user span { font-weight: 600; opacity: .8; }
+  .st-msg { position: absolute; bottom: 16px; left: 12px; right: 12px; border: 1.5px solid rgba(255,255,255,.7); border-radius: 999px; padding: 10px 16px;
+    color: rgba(255,255,255,.9); font: 600 12px var(--cuerpo); z-index: 4; }
+
+  /* 8 · cierre */
+  #s8 .l1 { top: 300px; font: 900 46px var(--display); letter-spacing: -.02em; }
+  #s8 .l2 { top: 354px; font: 900 46px var(--display); letter-spacing: -.02em; }
+  #s8 .logo { top: 450px; left: 135px; width: 270px; }
+  #s8 .firma { top: 770px; }
+  #s8 .firma b { display: block; font: 800 18px var(--display); color: var(--ink); }
+
+  /* toque (cursor táctil) */
+  #toque { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; z-index: 20;
+    background: rgba(40,40,40,.28); border: 2px solid rgba(255,255,255,.9); box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: 0; }
+  #onda { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; z-index: 19;
+    border: 3px solid var(--verde); opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="nav"><img src="__LOGOC__" alt="Te Quiero Verde"><span>Propuesta 2026</span></div>
+
+  <section class="sc" id="s1">
+    <div class="a center prod">Te Quiero Verde</div>
+    <div class="a center big"><span class="grad" id="bigGrad">Espectaverde.</span></div>
+    <p class="a center p lead">Nueva identidad visual para Galaro S.A.</p>
+    <img class="a logo" src="__LOGOC__" alt="">
+    <div class="a center cta"><span class="btn" id="btnVer">Ver la propuesta</span></div>
+  </section>
+
+  <section class="sc" id="s2">
+    <h2 class="a h-sec tit" style="font-size:40px">Mira lo más destacado.</h2>
+    <div id="track">
+      <div class="tile liso" style="background:radial-gradient(120% 90% at 50% 30%,#3a7420 0%,#0d1f0a 75%)">
+        <img src="__LOGOW__" alt="" style="position:absolute;left:50px;top:170px;width:280px">
+        <div class="txt">Logo en alta calidad.<small>Sin fondo, listo para cualquier pieza.</small></div></div>
+      <div class="tile claro" style="background:#fff">
+        <div style="position:absolute;left:26px;right:26px;top:150px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <i style="height:160px;border-radius:20px;background:#5BA80A"></i><i style="height:160px;border-radius:20px;background:#F5B014"></i>
+          <i style="height:160px;border-radius:20px;background:#3F7C05"></i><i style="height:160px;border-radius:20px;background:#333"></i></div>
+        <div class="txt">Colores que salen del campo.<small>Verde hoja, trigo, verde campo y carbón.</small></div></div>
+      <div class="tile"><img class="bgimg" src="__IMG:post-v3-rollos-fila__" alt=""><div class="txt">Posts con la foto adelante.<small>Un servicio, una pieza.</small></div></div>
+      <div class="tile"><img class="bgimg" src="__IMG:hist-historia-volteo__" alt=""><div class="txt">Historias para cada trabajo.<small>Y videos del celular editados.</small></div></div>
+      <div class="tile claro" style="background:#fff"><img src="__IMG:perfil__" alt="" style="position:absolute;left:60px;top:150px;width:260px;border-radius:50%;padding:6px;background:var(--grad)">
+        <div class="txt">Un perfil que vende.<small>Bio, destacados y WhatsApp directo.</small></div></div>
+    </div>
+    <div class="ctrl a"><div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="flechas"><b id="prevB"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></b>
+        <b id="nextB"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></b></div></div>
+  </section>
+
+  <section class="sc" id="s3">
+    <div class="a tit-sec"><h2 class="h-sec">Logo.</h2><p class="h-sub grad">Del archivo a la marca.</p></div>
+    <div id="cmp" class="a">
+      <div class="lado antes"><img src="__IMG:logo-antes__" alt=""></div>
+      <div class="lado desp" id="desp"><img src="__LOGOW__" alt=""></div>
+      <span class="tag t1">ANTES</span><span class="tag t2">DESPUÉS</span>
+      <div id="linea"><div id="manija"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></div></div>
+    </div>
+    <p class="a center p pie">JPG con fondo blanco → PNG sin fondo, en alta.<br>Versión color y versión blanca.</p>
+  </section>
+
+  <section class="sc" id="s4">
+    <div class="a tit-sec"><h2 class="h-sec">Colores.</h2><p class="h-sub grad">Salen del propio logo.</p></div>
+    <div id="muestra" class="a"><img id="muestraLogo" src="__LOGOW__" alt=""></div>
+    <div id="puntos" class="a"><i style="background:#5BA80A"></i><i style="background:#F5B014"></i><i style="background:#3F7C05"></i><i style="background:#333"></i></div>
+    <div class="a center" id="nombreColor"><b id="cNom">Verde hoja</b><span id="cHex">#5BA80A</span></div>
+  </section>
+
+  <section class="sc" id="s5">
+    <div class="a tit-sec"><h2 class="h-sec">Tipografía.</h2></div>
+    <div class="a aa1">Aa</div>
+    <div class="a lab l1"><span>Títulos</span><b>Nunito Black</b></div>
+    <div class="a aa2">Aa</div>
+    <div class="a lab l2"><span>Textos</span><b style="font-family:var(--cuerpo);font-weight:800">Nunito Sans</b></div>
+    <p class="a frase">Redonda, firme y clara. Se lee igual en un post que en una lona.</p>
+  </section>
+
+  <section class="sc" id="s6">
+    <div class="a tit-sec" style="top:86px"><h2 class="h-sec">Instagram.</h2><p class="h-sub grad">Un perfil que vende.</p></div>
+    <div class="phone a" id="ph1"><div class="pant">
+      <div class="isla"></div><div class="estado"><span>9:41</span><span>●●● ▮</span></div>
+      <div id="ig">
+        <div class="ig-top"><span>tequieroverde.bv</span><span>☰</span></div>
+        <div class="ig-head"><img src="__IMG:perfil__" alt="">
+          <div class="ig-stats"><div><b>88</b>seguidores</div><div><b>142</b>seguidos</div></div></div>
+        <div class="ig-bio"><b>Te Quiero Verde | Servicios Agrícolas</b><br>🌱 Galaro S.A. | Servicios agrícolas<br>🚜 Siembra • Rollos • Segadora y Enrollado • Venta de Rollos • Cosecha<br>Bell Ville, Córdoba<br><span class="link">wa.me/5493537596572</span></div>
+        <div class="ig-btns"><span class="on">Seguir</span><span>Mensaje</span><span>WhatsApp</span></div>
+        <div class="ig-dest">
+          <div><img src="__IMG:dest-1-siembra__" alt="">Siembra</div><div><img src="__IMG:dest-2-rollos__" alt="">Rollos</div>
+          <div><img src="__IMG:dest-3-venta__" alt="">Venta</div><div><img src="__IMG:dest-7-contacto__" alt="">Contacto</div></div>
+        <div class="ig-tabs"><span></span><span></span><span></span></div>
+        <div class="ig-grid">
+          <img src="__IMG:post-v2-arrancamos__" alt=""><img src="__IMG:post-v3-rollos-fila__" alt=""><img src="__IMG:post-v3-trigo__" alt="">
+          <img src="__IMG:post-v2-servicio__" alt=""><img src="__IMG:post-v3-venta-rollos__" alt=""><img src="__IMG:post-v2-rollos__" alt="">
+          <img src="__IMG:hist-historia-alto-alegre__" alt=""><img src="__IMG:hist-historia-volteo__" alt=""><img src="__IMG:hist-historia-trigo__" alt="">
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sc" id="s7">
+    <div class="a tit-sec" style="top:86px"><h2 class="h-sec">Historias.</h2><p class="h-sub grad">Lo que pasa en el lote.</p></div>
+    <div class="phone a" id="ph2"><div class="pant">
+      <div class="isla"></div>
+      <div id="st">
+        <img src="__IMG:hist-historia-alto-alegre__" alt=""><img src="__IMG:vid-frame-fertilizacion__" alt=""><img src="__IMG:hist-historia-volteo__" alt="">
+        <img src="__IMG:hist-historia-trigo__" alt=""><img src="__IMG:hist-historia-contacto__" alt="">
+        <div class="st-barras" id="barras"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <div class="st-user"><img src="__IMG:perfil__" alt="">tequieroverde.bv <span>2 h</span></div>
+        <div class="st-msg">Enviar mensaje</div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sc" id="s8">
+    <div class="a center l1">Maquinaria moderna.</div>
+    <div class="a center l2"><span class="grad">Equipo comprometido.</span></div>
+    <img class="a logo" src="__LOGOC__" alt="">
+    <p class="a center p firma"><b>Te Quiero Verde</b>Galaro S.A. · Bell Ville, Córdoba · 3537 59-6572</p>
+  </section>
+
+  <div id="onda"></div><div id="toque"></div>
+</div>
+
+<script>
+(function () {
+'use strict';
+const REC = location.hash === '#rec';
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const range = (t, a, b) => clamp((t - a) / (b - a));
+const END = 62;
+const stage = $('#stage');
+
+function fit() { const s = Math.min(innerWidth / 540, innerHeight / 960); stage.style.transform = `scale(${s})`; }
+addEventListener('resize', fit); fit();
+
+// aparición estilo Apple: sube 30px, se enfoca y aparece
+function reveal(el, t, a, d = .7, dy = 30) {
+  const k = easeOut(range(t, a, a + d));
+  el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`;
+}
+function scene(id, t, a, b, fade = .55) {
+  const el = $(id), i = range(t, a, a + .01), o = ease(range(t, b - fade, b));
+  el.style.opacity = t >= a && t < b ? (1 - o) : 0;
+  el.style.transform = `translateY(${-o * 40}px) scale(${1 - o * .03})`;
+  el.style.visibility = t >= a && t < b ? 'visible' : 'hidden';
+}
+const rel = el => { const r = el.getBoundingClientRect(), s = stage.getBoundingClientRect(), k = s.width / 540; return { x: (r.left + r.width / 2 - s.left) / k, y: (r.top + r.height / 2 - s.top) / k }; };
+const mix = (c1, c2, k) => { const p = h => [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16)); const a = p(c1), b = p(c2); return `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], k))).join(',')})`; };
+
+// toque: keyframes de posición
+let touch = { x: 430, y: 900, op: 0, press: 0, ripple: -1 };
+function tp(t, segs) {
+  // segs: [t0, t1, from{x,y}, to{x,y}] ; devuelve posición interpolada
+  for (const [a, b, f, g] of segs) if (t >= a && t <= b) { const k = ease(range(t, a, b)); return { x: lerp(f.x, g.x, k), y: lerp(f.y, g.y, k) }; }
+  return null;
+}
+
+/* ---------- dibujo de cada momento ---------- */
+function render(t) {
+  // 1 · hero
+  scene('#s1', t, 0, 5.4);
+  if (t < 5.4) {
+    reveal($('#s1 .prod'), t, .2); reveal($('#s1 .big'), t, .45, .9, 40); reveal($('#s1 .lead'), t, 1.0);
+    const kl = easeOut(range(t, 1.4, 2.8)), lg = $('#s1 .logo');
+    lg.style.opacity = kl; lg.style.filter = `blur(${(1 - kl) * 16}px)`; lg.style.transform = `scale(${lerp(1.1, 1, kl)})`;
+    reveal($('#s1 .cta'), t, 2.2);
+    $('#bigGrad').style.backgroundPosition = `${lerp(100, 0, easeOut(range(t, .45, 3)))}% 0`;
+    $('#btnVer').style.transform = t > 4.25 && t < 4.5 ? 'scale(.94)' : 'none';
+  }
+
+  // 2 · destacados
+  scene('#s2', t, 5.4, 14.2);
+  if (t >= 5.4 && t < 14.2) {
+    reveal($('#s2 .tit'), t, 5.5); reveal($('#s2 .ctrl'), t, 6.0);
+    const slides = [7.2, 8.8, 10.4, 12.0];
+    let pos = 0; slides.forEach(s => pos += ease(range(t, s, s + .6)));
+    const tk = easeOut(range(t, 5.7, 6.6));
+    $('#track').style.transform = `translateX(${80 - pos * 396 + (1 - tk) * 300}px)`;
+    $('#track').style.opacity = tk;
+    $$('#dots i').forEach((d, i) => { const on = clamp(1 - Math.abs(pos - i)); d.style.width = (8 + 18 * on) + 'px'; d.style.background = on > .5 ? '#1d1d1f' : '#86868b'; });
+    $$('#track .tile').forEach((tl, i) => { const dd = Math.abs(pos - i); tl.style.transform = `scale(${1 - clamp(dd) * .04})`; tl.style.opacity = 1 - clamp(dd - 1) * .6; });
+    $('#nextB').style.transform = slides.some(s => t > s - .12 && t < s + .1) ? 'scale(.9)' : 'none';
+  }
+
+  // 3 · antes / después
+  scene('#s3', t, 14.2, 22);
+  if (t >= 14.2 && t < 22) {
+    reveal($('#s3 .tit-sec'), t, 14.4); reveal($('#cmp'), t, 14.8, .8, 50); reveal($('#s3 .pie'), t, 15.4);
+    const X = t < 16.2 ? 92 : t < 18.6 ? lerp(92, 8, ease(range(t, 16.2, 18.6))) : lerp(8, 50, ease(range(t, 19.1, 20.1)));
+    $('#desp').style.clipPath = `inset(0 0 0 ${X}%)`; $('#linea').style.left = X + '%';
+  }
+
+  // 4 · colores
+  scene('#s4', t, 22, 29.5);
+  if (t >= 22 && t < 29.5) {
+    reveal($('#s4 .tit-sec'), t, 22.2); reveal($('#muestra'), t, 22.6, .8, 50); reveal($('#puntos'), t, 23.1); reveal($('#nombreColor'), t, 23.3);
+    const C = [['Verde hoja', '#5BA80A'], ['Trigo', '#F5B014'], ['Verde campo', '#3F7C05'], ['Carbón', '#333333']];
+    const sw = [24.65, 26.05, 27.45]; let idx = 0, k = 1;
+    sw.forEach((s, i) => { if (t >= s) { idx = i + 1; k = easeOut(range(t, s, s + .5)); } });
+    const prev = C[Math.max(0, idx - 1)][1], cur = C[idx][1];
+    $('#muestra').style.background = idx === 0 ? cur : mix(prev, cur, k);
+    $$('#puntos i').forEach((d, i) => d.style.setProperty('--sel', i === idx ? k : (i === idx - 1 ? 1 - k : 0)));
+    $('#cNom').textContent = C[idx][0]; $('#cHex').textContent = C[idx][1];
+    $('#nombreColor').style.opacity = Math.min(parseFloat($('#nombreColor').style.opacity) || 0, idx === 0 ? 1 : .4 + .6 * k);
+  }
+
+  // 5 · tipografía
+  scene('#s5', t, 29.5, 34.2);
+  if (t >= 29.5 && t < 34.2) {
+    reveal($('#s5 .tit-sec'), t, 29.6); reveal($('#s5 .aa1'), t, 30.0, .9, 60); reveal($('#s5 .l1'), t, 30.5);
+    reveal($('#s5 .aa2'), t, 31.0, .9, 60); reveal($('#s5 .l2'), t, 31.5); reveal($('#s5 .frase'), t, 32.0);
+  }
+
+  // 6 · perfil de instagram
+  scene('#s6', t, 34.2, 44.2);
+  if (t >= 34.2 && t < 44.2) {
+    reveal($('#s6 .tit-sec'), t, 34.3);
+    const kp = easeOut(range(t, 34.6, 35.9)); $('#ph1').style.opacity = kp; $('#ph1').style.transform = `translateY(${(1 - kp) * 420}px)`;
+    const maxS = Math.max(0, $('#ig').scrollHeight - 618 + 10);
+    const sc = lerp(0, maxS * .55, ease(range(t, 37.0, 39.0))) + lerp(0, maxS * .45, ease(range(t, 40.0, 42.0)));
+    $('#ig').style.transform = `translateY(${-sc}px)`;
+  }
+
+  // 7 · historias
+  scene('#s7', t, 44.2, 52.4);
+  if (t >= 44.2 && t < 52.4) {
+    reveal($('#s7 .tit-sec'), t, 44.3);
+    const kp = easeOut(range(t, 44.6, 45.8)); $('#ph2').style.opacity = kp; $('#ph2').style.transform = `translateY(${(1 - kp) * 420}px)`;
+    const T0 = 45.2, D = 1.4, n = 5, i = clamp(Math.floor((t - T0) / D), 0, n - 1);
+    $$('#st > img').forEach((im, j) => { const local = t - (T0 + j * D); im.style.opacity = j === i ? 1 : 0; im.style.transform = `scale(${1 + clamp(local / D) * .025})`; });
+    $$('#barras b').forEach((b, j) => b.style.width = (range(t, T0 + j * D, T0 + (j + 1) * D) * 100) + '%');
+  }
+
+  // 8 · cierre
+  scene('#s8', t, 52.4, END + 1);
+  if (t >= 52.4) {
+    reveal($('#s8 .l1'), t, 52.7, .8, 40); reveal($('#s8 .l2'), t, 53.5, .8, 40);
+    const kl = easeOut(range(t, 54.3, 55.8)), lg = $('#s8 .logo');
+    lg.style.opacity = kl; lg.style.filter = `blur(${(1 - kl) * 16}px)`; lg.style.transform = `scale(${lerp(1.1, 1, kl)})`;
+    reveal($('#s8 .firma'), t, 55.6);
+  }
+
+  // toque
+  const P = (sel) => rel($(sel));
+  let pos = null, op = 0, press = 0, rip = null;
+  const off = { x: 440, y: 930 };
+  if (t >= 3 && t < 5) { const b = P('#btnVer'); pos = tp(t, [[3, 4.1, off, b], [4.1, 5, b, b]]); op = range(t, 3, 3.3) * (1 - range(t, 4.7, 5)); press = t > 4.25 && t < 4.5 ? 1 : 0; rip = 4.3; }
+  else if (t >= 6.2 && t < 13.2) {
+    const nb = P('#nextB'), near = { x: nb.x + 18, y: nb.y + 40 };
+    pos = tp(t, [[6.2, 6.9, off, nb], [6.9, 7.3, nb, nb], [7.3, 8.6, nb, nb], [8.6, 8.9, nb, nb], [8.9, 10.2, nb, nb], [10.2, 10.5, nb, nb], [10.5, 11.8, nb, nb], [11.8, 13.2, nb, near]]);
+    op = range(t, 6.2, 6.5) * (1 - range(t, 12.7, 13.2));
+    for (const s of [7.1, 8.7, 10.3, 11.9]) { if (t > s && t < s + .2) press = 1; if (t >= s) rip = s; }
+  }
+  else if (t >= 15.4 && t < 20.8) {
+    const cm = P('#cmp'), y = cm.y, x = X => cm.x - 220 + 440 * X / 100;
+    pos = tp(t, [[15.4, 16.1, off, { x: x(92), y }], [16.1, 16.2, { x: x(92), y }, { x: x(92), y }], [16.2, 18.6, { x: x(92), y }, { x: x(8), y }], [18.6, 19.1, { x: x(8), y }, { x: x(8), y }], [19.1, 20.1, { x: x(8), y }, { x: x(50), y }], [20.1, 20.8, { x: x(50), y }, { x: x(50) + 40, y: y + 160 }]]);
+    op = range(t, 15.4, 15.7) * (1 - range(t, 20.3, 20.8)); press = t > 16.1 && t < 20.1 ? 1 : 0; if (t >= 16.1) rip = 16.1;
+  }
+  else if (t >= 23.6 && t < 28.6) {
+    const d = $$('#puntos i').map(rel);
+    pos = tp(t, [[23.6, 24.5, off, d[1]], [24.5, 25.4, d[1], d[1]], [25.4, 25.95, d[1], d[2]], [25.95, 26.8, d[2], d[2]], [26.8, 27.35, d[2], d[3]], [27.35, 28.6, d[3], { x: d[3].x + 30, y: d[3].y + 90 }]]);
+    op = range(t, 23.6, 23.9) * (1 - range(t, 28.1, 28.6));
+    for (const s of [24.55, 25.95, 27.35]) { if (t > s && t < s + .2) press = 1; if (t >= s) rip = s; }
+  }
+  else if (t >= 36.4 && t < 42.8) {
+    const a = { x: 285, y: 760 }, b = { x: 285, y: 440 };
+    pos = tp(t, [[36.4, 37, off, a], [37, 39, a, b], [39, 39.9, b, a], [39.9, 40, a, a], [40, 42, a, b], [42, 42.8, b, { x: 330, y: 520 }]]);
+    op = range(t, 36.4, 36.7) * (1 - range(t, 42.3, 42.8)); press = (t > 37 && t < 39) || (t > 40 && t < 42) ? 1 : 0; rip = t >= 40 ? 40 : t >= 37 ? 37 : null;
+  }
+  else if (t >= 45.8 && t < 51.4) {
+    const a = { x: 365, y: 580 };
+    pos = tp(t, [[45.8, 46.5, off, a], [46.5, 51.4, a, { x: a.x + 6, y: a.y + 10 }]]);
+    op = range(t, 45.8, 46.1) * (1 - range(t, 50.9, 51.4));
+    for (const s of [46.6, 48.0, 49.4, 50.8]) { if (t > s && t < s + .18) press = 1; if (t >= s) rip = s; }
+  }
+  const to = $('#toque'), on = $('#onda');
+  if (pos) { to.style.left = pos.x + 'px'; to.style.top = pos.y + 'px'; on.style.left = pos.x + 'px'; on.style.top = pos.y + 'px'; }
+  to.style.opacity = op; to.style.transform = `scale(${press ? .82 : 1})`; to.style.background = press ? 'rgba(91,168,10,.45)' : 'rgba(40,40,40,.28)';
+  const rk = rip !== null ? range(t, rip, rip + .5) : 1;
+  on.style.opacity = op * (rk < 1 ? 1 - rk : 0); on.style.transform = `scale(${1 + rk * 1.4})`;
+}
+
+/* ---------- audio generado (Web Audio) ---------- */
+const A = {};
+function out(n, wet) { n.connect(A.dry); if (wet) { const g = A.ctx.createGain(); g.gain.value = wet; n.connect(g); g.connect(A.verb); } }
+function env(g, w, p, a, d) { g.gain.setValueAtTime(.0001, w); g.gain.exponentialRampToValueAtTime(p, w + a); g.gain.exponentialRampToValueAtTime(.0001, w + a + d); }
+function osc(type, f, w, dur) { const o = A.ctx.createOscillator(); o.type = type; o.frequency.setValueAtTime(f, w); o.start(w); o.stop(w + dur + .05); return o; }
+function noise(w, dur) { const s = A.ctx.createBufferSource(); s.buffer = A.nb; s.loop = true; s.start(w); s.stop(w + dur + .05); return s; }
+function tick(w, v = .2) { const n = noise(w, .04), f = A.ctx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 3000; const g = A.ctx.createGain(); env(g, w, v, .001, .035); n.connect(f); f.connect(g); out(g, .1); const o = osc('sine', 1800, w, .06); const g2 = A.ctx.createGain(); env(g2, w, v * .25, .001, .05); o.connect(g2); out(g2, .1); }
+function whoosh(w, dur = 1.1, v = .16) { const n = noise(w, dur), f = A.ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.1; f.frequency.setValueAtTime(400, w); f.frequency.exponentialRampToValueAtTime(5000, w + dur);
+  const g = A.ctx.createGain(); g.gain.setValueAtTime(.0001, w); g.gain.exponentialRampToValueAtTime(v, w + dur * .6); g.gain.exponentialRampToValueAtTime(.0001, w + dur); n.connect(f); f.connect(g); out(g, .5); }
+function chime(w, f, v = .1) { [[1, 1], [2.76, .3], [5.4, .1]].forEach(([m, a]) => { const o = osc('sine', f * m, w, 3); const g = A.ctx.createGain(); env(g, w, v * a, .004, 2.8); o.connect(g); out(g, .8); }); }
+function pluck(w, f, v) { const o = osc('triangle', f, w, .6), lp = A.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(5000, w); lp.frequency.exponentialRampToValueAtTime(700, w + .35);
+  const g = A.ctx.createGain(); env(g, w, v, .004, .45); o.connect(lp); lp.connect(g); out(g, .5); }
+function kick(w, v) { const o = osc('sine', 110, w, .4); o.frequency.exponentialRampToValueAtTime(42, w + .16); const g = A.ctx.createGain(); env(g, w, v, .004, .32); o.connect(g); out(g, .05); }
+function bass(w, f, v) { const o = osc('sine', f, w, .45); const g = A.ctx.createGain(); env(g, w, v, .01, .38); o.connect(g); out(g, .05); }
+const CH = [[130.81, 164.81, 196, 246.94], [110, 130.81, 164.81, 196], [87.31, 110, 130.81, 164.81], [98, 123.47, 146.83, 196]]; // Cmaj7 Am7 Fmaj7 G
+async function renderAudio() {
+  const sr = 44100, ctx = new OfflineAudioContext(2, Math.ceil(sr * (END + 1)), sr); A.ctx = ctx;
+  const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 3; comp.connect(ctx.destination);
+  A.master = ctx.createGain(); A.master.gain.value = .9; A.master.connect(comp);
+  A.dry = ctx.createGain(); A.dry.connect(A.master);
+  A.verb = ctx.createConvolver(); const L = sr * 3, ib = ctx.createBuffer(2, L, sr);
+  for (let c = 0; c < 2; c++) { const d = ib.getChannelData(c); for (let i = 0; i < L; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / L, 2.6); }
+  A.verb.buffer = ib; const vg = ctx.createGain(); vg.gain.value = .45; A.verb.connect(vg); vg.connect(A.master);
+  A.nb = ctx.createBuffer(1, sr * 2, sr); const nd = A.nb.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+  // colchón armónico suave
+  const pf = ctx.createBiquadFilter(); pf.type = 'lowpass'; pf.Q.value = .6; const pg = ctx.createGain(); pg.gain.value = 0;
+  pf.connect(pg); pg.connect(A.dry); const ps = ctx.createGain(); ps.gain.value = .7; pg.connect(ps); ps.connect(A.verb);
+  const voices = CH[0].map(() => [-6, 6].map(dt => { const o = ctx.createOscillator(); o.type = 'sawtooth'; o.detune.value = dt; const g = ctx.createGain(); g.gain.value = .035; o.connect(g); g.connect(pf); o.start(); return o; }));
+  const lvl = [[0, 0], [1, .12], [5.4, .16], [14, .2], [34, .24], [44, .3], [52.4, .22], [55, .3], [61, .15], [62, 0]];
+  const cut = [[0, 700], [5.4, 1200], [22, 1600], [34, 2000], [44, 2600], [52.4, 1400], [56, 2400], [62, 900]];
+  const pw = (pts, t) => { if (t <= pts[0][0]) return pts[0][1]; for (let i = 1; i < pts.length; i++) if (t <= pts[i][0]) return lerp(pts[i - 1][1], pts[i][1], (t - pts[i - 1][0]) / (pts[i][0] - pts[i - 1][0])); return pts[pts.length - 1][1]; };
+  for (let t = 0; t <= END; t += .1) { pg.gain.setTargetAtTime(pw(lvl, t), t, .25); pf.frequency.setTargetAtTime(pw(cut, t), t, .3); }
+  for (let c = 0; c * 4 <= END; c++) CH[c % 4].forEach((f, v) => voices[v].forEach(o => o.frequency.setTargetAtTime(f, c * 4, .3)));
+  // arpegio y pulso
+  for (let t = 1; t < END - 2; t += .25) {
+    const ch = CH[Math.floor(t / 4) % 4], k = Math.round(t / .25), pat = [0, 2, 1, 3, 2, 1, 3, 0];
+    const v = t < 5.4 ? .035 : t < 52.4 ? lerp(.04, .09, range(t, 5.4, 50)) : .05;
+    if (t < 52.4 || k % 2 === 0) pluck(t, ch[pat[k % 8]] * 4, v);
+  }
+  for (let t = 14.2; t < 52.4; t += .5) { const ch = CH[Math.floor(t / 4) % 4]; bass(t, ch[0] / 2, lerp(.1, .2, range(t, 14, 50))); if (t >= 34.2 && Math.round(t * 2) % 2 === 0) kick(t, lerp(.18, .32, range(t, 34, 50))); }
+  // eventos
+  chime(1.4, 1318.5, .09); chime(1.75, 1975.5, .07);
+  [[4.3], [7.1], [8.7], [10.3], [11.9], [16.1], [24.55], [25.95], [27.35], [46.6], [48], [49.4], [50.8]].forEach(([w]) => tick(w));
+  [5.2, 14.0, 21.8, 29.3, 34.0, 44.0, 52.2].forEach(w => whoosh(w));
+  whoosh(16.2, 2.4, .08); chime(18.4, 1568, .07); chime(24.6, 1046.5, .06); chime(26.0, 1318.5, .06); chime(27.4, 1568, .06);
+  chime(30.1, 1975.5, .05); chime(31.1, 2349.3, .05);
+  [52.7, 53.5].forEach((w, i) => chime(w, [1318.5, 1568][i], .08));
+  [65.4, 130.8, 196, 261.6, 329.6].forEach((f, i) => { const o = osc('sine', f, 54.3, 7.5); const g = ctx.createGain(); env(g, 54.3, [.22, .2, .12, .07, .04][i], .03, 7); o.connect(g); out(g, .8); });
+  chime(54.4, 2637, .07);
+  const buf = await ctx.startRendering();
+  const l = buf.getChannelData(0), r = buf.getChannelData(1), n = l.length, ab = new ArrayBuffer(44 + n * 4), dv = new DataView(ab);
+  const ws = (p, s) => { for (let i = 0; i < s.length; i++) dv.setUint8(p + i, s.charCodeAt(i)); };
+  ws(0, 'RIFF'); dv.setUint32(4, 36 + n * 4, true); ws(8, 'WAVE'); ws(12, 'fmt '); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 2, true);
+  dv.setUint32(24, sr, true); dv.setUint32(28, sr * 4, true); dv.setUint16(32, 4, true); dv.setUint16(34, 16, true); ws(36, 'data'); dv.setUint32(40, n * 4, true);
+  for (let i = 0, p = 44; i < n; i++, p += 4) { dv.setInt16(p, clamp(l[i], -1, 1) * 32767, true); dv.setInt16(p + 2, clamp(r[i], -1, 1) * 32767, true); }
+  const by = new Uint8Array(ab); let s = ''; for (let i = 0; i < by.length; i += 0x8000) s += String.fromCharCode.apply(null, by.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+
+if (REC) {
+  window.__rec = { INTRO: 0, END, async setup() { try { await document.fonts.ready; } catch (e) {} await Promise.all($$('img').map(i => i.decode().catch(() => {}))); }, frame(v) { render(v); }, audio: renderAudio };
+  window.__recReady = true;
+} else {
+  let t0 = null;
+  (function loop(now) { requestAnimationFrame(loop); if (t0 === null) t0 = now; render(((now - t0) / 1000) % (END + 2)); })(performance.now());
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* Carrusel "Venta de rollos" (3 slides 1080x1350) y capas de texto del reel (1080x1920).
+   Misma base que v2.css: Nunito, verde/trigo, foto a sangre, pie Galaro. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+:root { --verde: #5BA80A; --verde-osc: #3F7C05; --trigo: #F5B014; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: var(--alto, 1350px); background: transparent; overflow: hidden; }
+
+.s { position: relative; width: 1080px; height: var(--alto, 1350px); overflow: hidden; font-family: 'Nunito Sans', sans-serif; color: #fff; }
+.s > .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.capa { position: absolute; inset: 0; }
+
+.logo { position: absolute; top: var(--top, 52px); right: 52px; width: 170px; filter: drop-shadow(0 4px 14px rgba(0,0,0,.45)); }
+.num { position: absolute; top: var(--top, 52px); left: 60px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 26px; letter-spacing: 3px; }
+.num span { color: var(--trigo); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #fff; color: var(--verde-osc); border-radius: 999px; padding: 10px 22px 10px 16px;
+  font-weight: 700; font-size: 20px; letter-spacing: 2px; text-transform: uppercase;
+}
+.chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 0 5px rgba(91,168,10,.25); }
+.ceja { display: inline-block; background: var(--trigo); color: #2a2a2a; border-radius: 999px; padding: 10px 20px;
+  font-weight: 700; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; }
+
+.pre { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 56px; line-height: 1; text-shadow: 0 4px 20px rgba(0,0,0,.35); }
+.gigante { font-family: 'Nunito', sans-serif; font-weight: 900; line-height: .88; letter-spacing: -8px; text-transform: uppercase;
+  margin-left: -10px; text-shadow: 0 10px 40px rgba(0,0,0,.3); }
+.gigante span { color: var(--trigo); }
+.h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 92px; line-height: .98; letter-spacing: -2px; text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+.h2 span { color: var(--trigo); }
+.bajada { font-size: 28px; line-height: 1.4; color: rgba(255,255,255,.92); margin-top: 22px; max-width: 760px; }
+
+.desliza { position: absolute; right: 60px; bottom: 56px; display: flex; align-items: center; gap: 12px;
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 26px; }
+.desliza svg { width: 34px; height: 34px; }
+
+.cta {
+  display: inline-flex; align-items: center; gap: 14px; background: var(--verde); color: #fff;
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 26px; padding: 20px 34px; border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.3);
+}
+.cta svg { width: 26px; height: 26px; }
+.lema { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; }
+.lema span { color: var(--trigo); }
+.fila { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.linea { height: 2px; background: rgba(255,255,255,.25); margin-bottom: 22px; }
+.pie { display: flex; justify-content: space-between; align-items: center; font-size: 19px; font-weight: 600; color: rgba(255,255,255,.85); }
+.pie b { color: #fff; font-weight: 700; }
+.pie .loc { display: flex; align-items: center; gap: 8px; }
+.pie .loc svg { width: 20px; height: 20px; fill: var(--trigo); }
+.pie .tel { color: #fff; font-weight: 800; font-size: 24px; font-family: 'Nunito', sans-serif; }
+.pie .tel svg { width: 22px; height: 22px; }
+
+/* ---------- Cultivo: "Lo que sembramos, crece." + línea de etapas ---------- */
+.k .etapas { display: flex; align-items: center; gap: 0; margin-top: 34px; }
+.k .etapa { display: flex; align-items: center; gap: 10px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 24px; }
+.k .etapa b { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--verde); }
+.k .etapa b svg { width: 18px; height: 18px; }
+.k .etapa.prox b { background: transparent; border: 3px dashed rgba(255,255,255,.8); }
+.k .etapa.prox { color: rgba(255,255,255,.85); }
+.k .tramo { width: 46px; height: 3px; background: var(--trigo); margin: 0 14px; border-radius: 2px; }
+.k .tramo.prox { background: repeating-linear-gradient(90deg, rgba(255,255,255,.8) 0 6px, transparent 6px 12px); }
+
+/* ---------- Trigo: ficha de lote ---------- */
+.ficha { display: flex; border-radius: 26px; overflow: hidden; background: rgba(255,255,255,.14); border: 2px solid rgba(255,255,255,.35);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.ficha div { flex: 1; padding: 20px 26px; }
+.ficha div + div { border-left: 2px solid rgba(255,255,255,.25); }
+.ficha small { display: block; font-size: 18px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--trigo); }
+.ficha b { display: block; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 34px; margin-top: 4px; }
